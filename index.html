@@ -6,57 +6,56 @@
     <title>Scrambled Sentence Generator</title>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-gray-100 min-h-screen p-8">
-    <div id="app" class="max-w-3xl mx-auto">
-        <header class="mb-8 text-center">
-            <h1 class="text-3xl font-bold text-gray-800">Scrambled Sentence Generator</h1>
-            <p class="text-gray-600 mt-2">Create handwriting worksheets for children</p>
+<body>
+    <div id="app" class="container">
+        <header>
+            <h1>Scrambled Sentence Generator</h1>
+            <p>Create handwriting worksheets for children.</p>
         </header>
 
-        <div class="space-y-6">
-            <div v-for="(item, index) in sentences" :key="index" class="bg-white p-6 rounded-lg shadow-md relative">
-                <button @click="removeSentence(index)" class="absolute top-4 right-4 text-red-500 hover:text-red-700 font-bold" title="Remove Sentence">
+        <main>
+            <div v-for="(item, index) in sentences" :key="index" class="sentence-card">
+                <button @click="removeSentence(index)" class="remove-btn" title="Remove Sentence">
                     &times;
                 </button>
 
-                <div class="mb-4">
-                    <label :for="'sentence-' + index" class="block text-sm font-medium text-gray-700 mb-1">Sentence</label>
-                    <input :id="'sentence-' + index" type="text" v-model="item.text" @input="updateScramble(index)" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 outline-none" placeholder="e.g. The cat is near the dog">
+                <div class="form-group">
+                    <label :for="'sentence-' + index">Sentence</label>
+                    <input :id="'sentence-' + index" type="text" v-model="item.text" @input="updateScramble(index)" placeholder="E.G. THE CAT IS NEAR THE DOG">
                 </div>
 
-                <div class="mb-4">
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Image (Optional)</label>
-                    <div class="flex items-center gap-4">
-                        <input type="file" @change="handleImageUpload($event, index)" accept="image/*" class="text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
-                        <a v-if="item.text" :href="'https://www.google.com/search?tbm=isch&q=' + encodeURIComponent(item.text)" target="_blank" class="text-blue-600 hover:underline text-sm">Find image on Google</a>
+                <div class="form-group">
+                    <label>Image (Optional)</label>
+                    <div class="file-input-wrapper">
+                        <input type="file" @change="handleImageUpload($event, index)" accept="image/*">
+                        <a v-if="item.text" :href="'https://www.google.com/search?tbm=isch&q=' + encodeURIComponent(item.text)" target="_blank" class="google-link">FIND IMAGE ON GOOGLE &rarr;</a>
                     </div>
-                    <div v-if="item.imageData" class="mt-2">
-                        <img :src="item.imageData" class="h-20 w-auto object-cover rounded border">
+                    <div v-if="item.imageData" class="image-preview">
+                        <img :src="item.imageData" alt="Preview">
                     </div>
                 </div>
 
-                <div class="bg-gray-50 p-3 rounded border border-dashed border-gray-300">
-                    <span class="text-xs text-gray-500 block mb-1">Preview Scramble:</span>
-                    <p class="text-lg font-mono tracking-wide text-gray-800">{{ item.scrambled }}</p>
+                <div class="preview-box">
+                    <span class="preview-label">PREVIEW SCRAMBLE:</span>
+                    <p class="preview-text">{{ item.scrambled }}</p>
                 </div>
             </div>
-        </div>
 
-        <div class="mt-8 flex justify-between">
-            <button @click="addSentence" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded shadow transition">
-                + Add Sentence
-            </button>
-            <button @click="generatePDF" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded shadow-lg transition flex items-center gap-2">
-                <span>Download PDF</span>
-            </button>
-        </div>
+            <div class="btn-group">
+                <button @click="addSentence" class="secondary">
+                    + Add Sentence
+                </button>
+                <button @click="generatePDF">
+                    Download PDF
+                </button>
+            </div>
+        </main>
 
-        <div class="mt-12 text-center text-gray-500 text-sm">
-            <p>Revived & Modernized Project</p>
-        </div>
+        <footer>
+            <p>REVIVED & MODERNIZED PROJECT</p>
+        </footer>
     </div>
     <script src="script.js"></script>
 </body>

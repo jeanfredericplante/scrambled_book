@@ -1,4 +1,216 @@
-/* Custom styles */
-.font-mono {
-    font-family: 'Courier New', Courier, monospace;
+:root {
+    --primary-color: #333;
+    --accent-color: #ff6b6b;
+    --bg-color: #fafafa;
+    --text-color: #333;
+    --font-family: 'Courier New', Courier, monospace;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.container {
+    background-color: transparent;
+    padding: 2rem;
+    box-shadow: none;
+    max-width: 800px;
+    width: 100%;
+}
+
+header {
+    text-align: left;
+    margin-bottom: 3rem;
+    border-bottom: 4px solid var(--text-color);
+    padding-bottom: 1rem;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 3rem;
+    color: var(--text-color);
+    letter-spacing: -2px;
+}
+
+header p {
+    color: #666;
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+}
+
+/* Card / List Item Styles */
+.sentence-card {
+    background: white;
+    border: 2px solid var(--text-color);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    position: relative;
+    box-shadow: 5px 5px 0px rgba(0,0,0,0.1);
+}
+
+.remove-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    color: var(--accent-color);
+    font-weight: bold;
+    font-size: 1.5rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    box-shadow: none;
+    width: auto;
+}
+
+.remove-btn:hover {
+    color: #d00;
+    transform: scale(1.1);
+    background: transparent;
+    box-shadow: none;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+input[type="text"], input[type="file"] {
+    width: 100%;
+    padding: 1rem;
+    background-color: white;
+    border: 2px solid var(--text-color);
+    border-radius: 0;
+    font-size: 1rem;
+    font-family: inherit;
+    box-sizing: border-box;
+    transition: all 0.2s;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    background-color: #fff0f0;
+    border-color: var(--accent-color);
+}
+
+.image-preview {
+    margin-top: 1rem;
+    border: 1px solid #ccc;
+    padding: 5px;
+    background: #fff;
+    display: inline-block;
+}
+
+.image-preview img {
+    max-height: 100px;
+    display: block;
+}
+
+.preview-box {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #eee;
+    border-left: 4px solid var(--text-color);
+}
+
+.preview-label {
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.preview-text {
+    font-size: 1.2rem;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+/* Buttons */
+.btn-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+button {
+    width: 100%;
+    padding: 1.2rem;
+    background-color: var(--text-color);
+    color: white;
+    border: none;
+    border-radius: 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: inherit;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: transform 0.1s, box-shadow 0.1s;
+    box-shadow: 5px 5px 0px rgba(0,0,0,0.2);
+}
+
+button:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 7px 7px 0px rgba(0,0,0,0.2);
+    background-color: #000;
+}
+
+button:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+}
+
+button.secondary {
+    background-color: white;
+    color: var(--text-color);
+    border: 2px solid var(--text-color);
+}
+
+button.secondary:hover {
+    background-color: #f0f0f0;
+}
+
+.file-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.google-link {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    border-bottom: 1px solid transparent;
+}
+
+.google-link:hover {
+    border-bottom-color: var(--accent-color);
+}
+
+footer {
+    margin-top: 4rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #999;
 }
