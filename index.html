@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrambled Sentence Generator</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app" class="container">
+        <header>
+            <h1>Scrambled Sentence Generator</h1>
+            <p>Create handwriting worksheets for children.</p>
+        </header>
+
+        <main>
+            <div v-for="(item, index) in sentences" :key="index" class="sentence-card">
+                <button @click="removeSentence(index)" class="remove-btn" title="Remove Sentence">
+                    &times;
+                </button>
+
+                <div class="form-group">
+                    <label :for="'sentence-' + index">Sentence</label>
+                    <input :id="'sentence-' + index" type="text" v-model="item.text" @input="updateScramble(index)" placeholder="E.G. THE CAT IS NEAR THE DOG">
+                </div>
+
+                <div class="form-group">
+                    <label>Image (Optional)</label>
+                    <div class="file-input-wrapper">
+                        <input type="file" @change="handleImageUpload($event, index)" accept="image/*">
+                        <a v-if="item.text" :href="'https://www.google.com/search?tbm=isch&q=' + encodeURIComponent(item.text)" target="_blank" class="google-link">FIND IMAGE ON GOOGLE &rarr;</a>
+                    </div>
+                    <div v-if="item.imageData" class="image-preview">
+                        <img :src="item.imageData" alt="Preview">
+                    </div>
+                </div>
+
+                <div class="preview-box">
+                    <span class="preview-label">PREVIEW SCRAMBLE:</span>
+                    <p class="preview-text">{{ item.scrambled }}</p>
+                </div>
+            </div>
+
+            <div class="btn-group">
+                <button @click="addSentence" class="secondary">
+                    + Add Sentence
+                </button>
+                <button @click="generatePDF">
+                    Download PDF
+                </button>
+            </div>
+        </main>
+
+        <footer>
+            <p>REVIVED & MODERNIZED PROJECT</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
